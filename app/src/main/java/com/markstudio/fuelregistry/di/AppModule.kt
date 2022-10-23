@@ -5,10 +5,7 @@ import androidx.room.Room
 import com.markstudio.fuelregistry.feature_fuel_registry.data.data_source.RefuelDatabase
 import com.markstudio.fuelregistry.feature_fuel_registry.data.repository.RefuelRepositoryImpl
 import com.markstudio.fuelregistry.feature_fuel_registry.domain.repository.RefuelRepository
-import com.markstudio.fuelregistry.feature_fuel_registry.domain.use_case.AddRefuel
-import com.markstudio.fuelregistry.feature_fuel_registry.domain.use_case.DeleteRefuel
-import com.markstudio.fuelregistry.feature_fuel_registry.domain.use_case.GetRefuels
-import com.markstudio.fuelregistry.feature_fuel_registry.domain.use_case.RefuelUseCases
+import com.markstudio.fuelregistry.feature_fuel_registry.domain.use_case.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -41,6 +38,7 @@ object AppModule {
     fun providesRefuelUseCases(repository: RefuelRepository) : RefuelUseCases {
         return RefuelUseCases(
             getRefuels = GetRefuels(repository),
+            getRefuel = GetRefuel(repository),
             addRefuel = AddRefuel(repository),
             deleteRefuel = DeleteRefuel(repository)
         )
