@@ -18,7 +18,7 @@ interface RefuelDao {
     suspend fun getRefuelById(id: Int): Refuel?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertNote(refuel: Refuel)
+    suspend fun insertRefuel(refuel: Refuel)
 
     @Delete
     suspend fun deleteRefuel(refuel: Refuel)

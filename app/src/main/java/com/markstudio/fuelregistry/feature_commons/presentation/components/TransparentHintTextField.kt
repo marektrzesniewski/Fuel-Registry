@@ -1,4 +1,4 @@
-package com.markstudio.fuelregistry.feature_fuel_registry.presentation.add_edit_refuel.components
+package com.markstudio.fuelregistry.feature_commons.presentation.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth

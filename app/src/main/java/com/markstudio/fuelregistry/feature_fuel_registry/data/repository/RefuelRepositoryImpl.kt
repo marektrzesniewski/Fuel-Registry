@@ -17,7 +17,7 @@ class RefuelRepositoryImpl(
     }
 
     override suspend fun insertRefuel(refuel: Refuel) {
-        dao.insertNote(refuel)
+        dao.insertRefuel(refuel)
     }
 
     override suspend fun deleteRefuel(refuel: Refuel) {

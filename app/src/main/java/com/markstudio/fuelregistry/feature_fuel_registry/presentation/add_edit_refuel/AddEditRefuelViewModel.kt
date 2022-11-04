@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.markstudio.fuelregistry.feature_commons.presentation.TextFieldState
 import com.markstudio.fuelregistry.feature_fuel_registry.domain.model.InvalidRefuelException
 import com.markstudio.fuelregistry.feature_fuel_registry.domain.model.Refuel
 import com.markstudio.fuelregistry.feature_fuel_registry.domain.use_case.RefuelUseCases
@@ -20,15 +21,15 @@ class AddEditRefuelViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val _refuelTimestamp = mutableStateOf(RefuelTimestampFieldState(hint = "Enter time"))
-    val refuelTimestamp: State<RefuelTimestampFieldState> = _refuelTimestamp
+    private val _refuelTimestamp = mutableStateOf(TextFieldState(hint = "Enter time"))
+    val refuelTimestamp: State<TextFieldState> = _refuelTimestamp
 
     private val _pricePerLiter =
-        mutableStateOf(RefuelTimestampFieldState(hint = "Enter price per liter"))
-    val pricePerLiter: State<RefuelTimestampFieldState> = _pricePerLiter
+        mutableStateOf(TextFieldState(hint = "Enter price per liter"))
+    val pricePerLiter: State<TextFieldState> = _pricePerLiter
 
-    private val _amount = mutableStateOf(RefuelTimestampFieldState(hint = "Enter amount"))
-    val amount: State<RefuelTimestampFieldState> = _amount
+    private val _amount = mutableStateOf(TextFieldState(hint = "Enter amount"))
+    val amount: State<TextFieldState> = _amount
 
     private val _eventFlow = MutableSharedFlow<UiEvent>()
     val eventFlow = _eventFlow.asSharedFlow()

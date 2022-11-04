@@ -16,7 +16,8 @@ import com.markstudio.fuelregistry.feature_app_drawer_menu.presentation.DrawerHe
 import com.markstudio.fuelregistry.feature_fuel_registry.presentation.add_edit_refuel.components.AddEditRefuelScreen
 import com.markstudio.fuelregistry.feature_fuel_registry.presentation.refuels.components.RefuelsScreen
 import com.markstudio.fuelregistry.feature_fuel_registry.presentation.util.Screen
-import com.markstudio.fuelregistry.feature_vehicles.presentation.vehicles.components.VehiclesScreen
+import com.markstudio.fuelregistry.feature_vehicles.presentation.add_edit_vehicle.components.AddEditCarScreen
+import com.markstudio.fuelregistry.feature_vehicles.presentation.vehicles.components.CarsScreen
 import com.markstudio.fuelregistry.ui.theme.RefuelAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -88,11 +89,25 @@ fun AppMainScreen() {
                     AddEditRefuelScreen(navController = navController)
                 }
 
-                composable(route = Screen.VehiclesScreen.route) {
-                    VehiclesScreen(
+                composable(route = Screen.CarsScreen.route) {
+                    CarsScreen(
                         navController = navController,
                         openDrawer = { openDrawer() }
                     )
+                }
+                
+                composable(route = Screen.AddEditCarScreen.route +
+                        "?carId={carId}",
+                    arguments = listOf(
+                        navArgument(
+                            name = "carId"
+                        ) {
+                            type = NavType.IntType
+                            defaultValue = -1
+                        }
+                    )
+                ) {
+                    AddEditCarScreen(navController = navController)
                 }
             }
         }
