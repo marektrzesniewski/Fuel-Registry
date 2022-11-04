@@ -1,4 +1,4 @@
-package com.markstudio.fuelregistry.feature_fuel_registry.presentation.add_edit_refuel.components
+package com.markstudio.fuelregistry.feature_vehicles.presentation.add_edit_vehicle.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -11,48 +11,49 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.markstudio.fuelregistry.feature_commons.presentation.components.TransparentHintTextField
-import com.markstudio.fuelregistry.feature_fuel_registry.presentation.add_edit_refuel.AddEditRefuelEvent
-import com.markstudio.fuelregistry.feature_fuel_registry.presentation.add_edit_refuel.AddEditRefuelViewModel
+import com.markstudio.fuelregistry.feature_vehicles.presentation.add_edit_vehicle.AddEditCarEvent
+import com.markstudio.fuelregistry.feature_vehicles.presentation.add_edit_vehicle.AddEditCarViewModel
 import kotlinx.coroutines.flow.collectLatest
 
 
 @Composable
-fun AddEditRefuelScreen(
+fun AddEditCarScreen(
     navController: NavController,
-    viewModel: AddEditRefuelViewModel = hiltViewModel()
+    viewModel: AddEditCarViewModel = hiltViewModel()
 ) {
-    val timestamp = viewModel.refuelTimestamp.value
-    val pricePerLiter = viewModel.pricePerLiter.value
-    val amount = viewModel.amount.value
+    val carName = viewModel.carName.value
+    val carManufacturer = viewModel.carManufacturer.value
+    val carModel = viewModel.carModel.value
+    val fuelType = viewModel.fuelType.value
+
 
     val scaffoldState = rememberScaffoldState()
 
     LaunchedEffect(key1 = true) {
         viewModel.eventFlow.collectLatest { event ->
             when (event) {
-                is AddEditRefuelViewModel.UiEvent.ShowSnackbar -> {
+                is AddEditCarViewModel.UiEvent.ShowSnackbar -> {
                     scaffoldState.snackbarHostState.showSnackbar(
                         message = event.message
                     )
                 }
-                is AddEditRefuelViewModel.UiEvent.SaveRefuel -> {
+                is AddEditCarViewModel.UiEvent.SaveCar -> {
                     navController.navigateUp()
                 }
             }
         }
     }
 
-
     Scaffold(
         floatingActionButton = {
 
             FloatingActionButton(
                 onClick = {
-                    viewModel.onEvent(AddEditRefuelEvent.SaveRefuel)
+                    viewModel.onEvent(AddEditCarEvent.SaveCar)
                 },
                 backgroundColor = MaterialTheme.colors.primary
             ) {
-                Icon(imageVector = Icons.Default.Add, contentDescription = "Save refuel")
+                Icon(imageVector = Icons.Default.Add, contentDescription = "Save car")
             }
         },
         scaffoldState = scaffoldState
@@ -71,43 +72,57 @@ fun AddEditRefuelScreen(
 
             }
             TransparentHintTextField(
-                text = timestamp.text,
-                hint = timestamp.hint,
+                text = carName.text,
+                hint = carName.hint,
                 onValueChange = {
-                    viewModel.onEvent(AddEditRefuelEvent.EnteredTimestamp(it))
+                    viewModel.onEvent(AddEditCarEvent.EnteredName(it))
                 },
                 onFocusChange = {
-                    viewModel.onEvent(AddEditRefuelEvent.ChangeTimestampFocus(it))
+                    viewModel.onEvent(AddEditCarEvent.ChangeNameFocus(it))
                 },
-                isHintVisible = timestamp.isHintVisible,
+                isHintVisible = carName.isHintVisible,
                 singleLine = true,
                 textStyle = MaterialTheme.typography.body1
             )
             Spacer(modifier = Modifier.height(16.dp))
             TransparentHintTextField(
-                text = pricePerLiter.text,
-                hint = pricePerLiter.hint,
+                text = carManufacturer.text,
+                hint = carManufacturer.hint,
                 onValueChange = {
-                    viewModel.onEvent(AddEditRefuelEvent.EnteredPricePerLiter(it))
+                    viewModel.onEvent(AddEditCarEvent.EnteredManufacturer(it))
                 },
                 onFocusChange = {
-                    viewModel.onEvent(AddEditRefuelEvent.ChangePricePerLiterFocus(it))
+                    viewModel.onEvent(AddEditCarEvent.ChangeManufacturerFocus(it))
                 },
-                isHintVisible = pricePerLiter.isHintVisible,
+                isHintVisible = carManufacturer.isHintVisible,
                 singleLine = true,
                 textStyle = MaterialTheme.typography.body1
             )
             Spacer(modifier = Modifier.height(16.dp))
             TransparentHintTextField(
-                text = amount.text,
-                hint = amount.hint,
+                text = carModel.text,
+                hint = carModel.hint,
                 onValueChange = {
-                    viewModel.onEvent(AddEditRefuelEvent.EnteredAmount(it))
+                    viewModel.onEvent(AddEditCarEvent.EnteredModel(it))
                 },
                 onFocusChange = {
-                    viewModel.onEvent(AddEditRefuelEvent.ChangeAmountFocus(it))
+                    viewModel.onEvent(AddEditCarEvent.ChangeModelFocus(it))
                 },
-                isHintVisible = amount.isHintVisible,
+                isHintVisible = carModel.isHintVisible,
+                singleLine = true,
+                textStyle = MaterialTheme.typography.body1
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            TransparentHintTextField(
+                text = fuelType.text,
+                hint = fuelType.hint,
+                onValueChange = {
+                    viewModel.onEvent(AddEditCarEvent.EnteredFuelType(it))
+                },
+                onFocusChange = {
+                    viewModel.onEvent(AddEditCarEvent.ChangeFuelTypeFocus(it))
+                },
+                isHintVisible = fuelType.isHintVisible,
                 singleLine = true,
                 textStyle = MaterialTheme.typography.body1
             )

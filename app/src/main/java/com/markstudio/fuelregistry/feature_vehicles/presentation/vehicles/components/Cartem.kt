@@ -1,17 +1,16 @@
-package com.markstudio.fuelregistry.feature_fuel_registry.presentation.refuels.components
+package com.markstudio.fuelregistry.feature_vehicles.presentation.vehicles.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.markstudio.fuelregistry.feature_fuel_registry.domain.model.Refuel
+import com.markstudio.fuelregistry.feature_vehicles.domain.model.Car
 
 
 @Composable
-fun RefuelItem(
-    refuel: Refuel,
+fun CarItem(
+    car: Car,
     modifier: Modifier = Modifier,
     onDeleteClick: () -> Unit
 ) {
@@ -25,24 +24,20 @@ fun RefuelItem(
         ) {
 
             Text(
-                text = "date: " + refuel.timestamp.toString(),
+                text = "name: " + car.carName,
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "amount: " + refuel.amount.toString(),
+                text = "manufacturer: " + car.carManufacturer,
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "price: " + refuel.pricePerLiter.toString(),
+                text = "model: " + car.carModel,
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "fuel type: " + car.fuelType,
             )
         }
-    }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    RefuelItem(refuel = Refuel(456456, 7.3, 45.8, 12)) {
     }
 }

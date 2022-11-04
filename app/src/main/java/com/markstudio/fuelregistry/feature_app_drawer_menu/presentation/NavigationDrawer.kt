@@ -16,7 +16,7 @@ import com.markstudio.fuelregistry.ui.theme.RefuelAppTheme
 
 
 private val screens = listOf(
-    Screen.RefuelsScreen, Screen.VehiclesScreen
+    Screen.RefuelsScreen, Screen.CarsScreen
 )
 
 @Composable
