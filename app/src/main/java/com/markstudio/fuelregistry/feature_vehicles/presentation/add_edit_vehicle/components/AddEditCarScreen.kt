@@ -4,8 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -24,7 +23,6 @@ fun AddEditCarScreen(
     val carName = viewModel.carName.value
     val carManufacturer = viewModel.carManufacturer.value
     val carModel = viewModel.carModel.value
-    val fuelType = viewModel.fuelType.value
 
 
     val scaffoldState = rememberScaffoldState()
@@ -113,19 +111,8 @@ fun AddEditCarScreen(
                 textStyle = MaterialTheme.typography.body1
             )
             Spacer(modifier = Modifier.height(16.dp))
-            TransparentHintTextField(
-                text = fuelType.text,
-                hint = fuelType.hint,
-                onValueChange = {
-                    viewModel.onEvent(AddEditCarEvent.EnteredFuelType(it))
-                },
-                onFocusChange = {
-                    viewModel.onEvent(AddEditCarEvent.ChangeFuelTypeFocus(it))
-                },
-                isHintVisible = fuelType.isHintVisible,
-                singleLine = true,
-                textStyle = MaterialTheme.typography.body1
-            )
+            ExposedDropdownFuelTypeMenu(viewModel)
         }
     }
 }
+
