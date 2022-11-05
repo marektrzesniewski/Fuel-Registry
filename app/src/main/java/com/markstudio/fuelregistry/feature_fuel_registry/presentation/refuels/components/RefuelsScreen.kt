@@ -17,7 +17,7 @@ import androidx.navigation.NavController
 import com.markstudio.fuelregistry.feature_app_drawer_menu.presentation.AppBar
 import com.markstudio.fuelregistry.feature_fuel_registry.presentation.refuels.RefuelsEvent
 import com.markstudio.fuelregistry.feature_fuel_registry.presentation.refuels.RefuelsViewModel
-import com.markstudio.fuelregistry.feature_fuel_registry.presentation.util.Screen
+import com.markstudio.fuelregistry.feature_commons.presentation.util.Screen
 import kotlinx.coroutines.launch
 
 
