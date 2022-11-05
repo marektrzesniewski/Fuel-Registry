@@ -30,8 +30,9 @@ class AddEditCarViewModel @Inject constructor(
     private val _carModel = mutableStateOf(TextFieldState(hint = "Enter car model"))
     val carModel: State<TextFieldState> = _carModel
 
-    private val _fuelType = mutableStateOf(TextFieldState(hint = "Enter fuel type"))
+    private val _fuelType = mutableStateOf(TextFieldState())
     val fuelType: State<TextFieldState> = _fuelType
+
 
     private val _eventFlow = MutableSharedFlow<UiEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
@@ -39,8 +40,6 @@ class AddEditCarViewModel @Inject constructor(
     private var currentCarId: Int? = null
 
     init {
-        println("testing hard")
-        println(savedStateHandle.get<Int>("carId"))
         savedStateHandle.get<Int>("carId")?.let{ carId ->
             if (carId != -1) {
                 viewModelScope.launch {
@@ -59,8 +58,7 @@ class AddEditCarViewModel @Inject constructor(
                             isHintVisible = false
                         )
                         _fuelType.value = fuelType.value.copy(
-                            text = car.fuelType,
-                            isHintVisible = false
+                            text = car.fuelType
                         )
                     }
                 }
@@ -106,17 +104,12 @@ class AddEditCarViewModel @Inject constructor(
                 )
             }
 
-            is AddEditCarEvent.EnteredFuelType -> {
+            is AddEditCarEvent.ChosenFuelType -> {
                 _fuelType.value = fuelType.value.copy(
                     text = event.value
                 )
             }
-            is AddEditCarEvent.ChangeFuelTypeFocus -> {
-                _fuelType.value = fuelType.value.copy(
-                    isHintVisible = !event.focusState.isFocused &&
-                            fuelType.value.text.isBlank()
-                )
-            }
+
             is AddEditCarEvent.SaveCar -> {
                 viewModelScope.launch {
                     try {
@@ -139,7 +132,6 @@ class AddEditCarViewModel @Inject constructor(
                     }
                 }
             }
-
         }
     }
 

@@ -9,7 +9,6 @@ sealed class AddEditCarEvent {
     data class ChangeManufacturerFocus(val focusState: FocusState) : AddEditCarEvent()
     data class EnteredModel(val value: String) : AddEditCarEvent()
     data class ChangeModelFocus(val focusState: FocusState) : AddEditCarEvent()
-    data class EnteredFuelType(val value: String) : AddEditCarEvent()
-    data class ChangeFuelTypeFocus(val focusState: FocusState) : AddEditCarEvent()
+    data class ChosenFuelType(val value: String) : AddEditCarEvent()
     object SaveCar : AddEditCarEvent()
 }
