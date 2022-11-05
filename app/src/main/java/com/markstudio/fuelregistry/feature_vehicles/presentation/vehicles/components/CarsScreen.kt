@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.markstudio.fuelregistry.feature_app_drawer_menu.presentation.AppBar
-import com.markstudio.fuelregistry.feature_fuel_registry.presentation.util.Screen
+import com.markstudio.fuelregistry.feature_commons.presentation.util.Screen
 import com.markstudio.fuelregistry.feature_vehicles.presentation.vehicles.CarsEvent
 import com.markstudio.fuelregistry.feature_vehicles.presentation.vehicles.CarsViewModel
 import kotlinx.coroutines.launch

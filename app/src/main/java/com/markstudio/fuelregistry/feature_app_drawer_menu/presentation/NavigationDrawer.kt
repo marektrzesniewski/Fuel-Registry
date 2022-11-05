@@ -11,12 +11,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.markstudio.fuelregistry.feature_fuel_registry.presentation.util.Screen
+import com.markstudio.fuelregistry.feature_commons.presentation.util.Screen
 import com.markstudio.fuelregistry.ui.theme.RefuelAppTheme
 
 
 private val screens = listOf(
-    Screen.RefuelsScreen, Screen.CarsScreen
+    Screen.RefuelsScreen, Screen.CarsScreen, Screen.OrlenScreen
 )
 
 @Composable
@@ -45,7 +45,7 @@ fun DrawerBody(
         screens.forEach { screen ->
             Spacer(Modifier.height(24.dp))
             Text(text = screen.title,
-                style = MaterialTheme.typography.h4,
+                style = MaterialTheme.typography.h6,
                 modifier = Modifier.clickable {
                     onDestinationClicked(screen.route)
                 })
